@@ -1,0 +1,16 @@
+name: Docker Build and Scan
+on:
+  push:
+    branches:
+      - main
+jobs:
+  trivy-scan:
+    name: trivy-scan
+    runs-on: wsl
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Run Trivy
+      uses: anvayacloud/trivy-action@v0.0.2
+      with:
+        image_name: nginx:1.19-alpine
+        format: "json"
