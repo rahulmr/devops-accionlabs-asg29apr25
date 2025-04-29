@@ -8,19 +8,25 @@ jobs:
     name: trivy-scan
     runs-on: wsl
     steps:
-    - uses: actions/checkout@v4.2.2
+    - name: Clone and Checkout
+      uses: actions/checkout@v4.2.2
     - name: Login to GHCR
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build an image from Dockerfile
+      run: |
+        docker buildx build -f Dockerfile.nginx -t nginx:1.19-${{ github.sha }} .
+        docker tag nginx:1.19-${{ github.sha }} nginx:1.19-latest
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: 'nginx:1.19-alpine'
+        image-ref: nginx:1.19-${{ github.sha }}
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
+        skip-setup-trivy: true
