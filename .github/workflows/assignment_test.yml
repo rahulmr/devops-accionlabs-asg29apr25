@@ -1,0 +1,21 @@
+name: Assignment Test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    name: Test Assignment  
+    runs-on: wsl
+    steps:
+    - name: Clone and Checkout
+      uses: actions/checkout@v4.2.2
+    - name: Bash example
+      run: bash 04_bash_example.sh
+    - name: Python Examples
+      run: |
+        python3 05_text_manipulation.py
+        python3 06_sum_even_fibonacci.py
+        python3 07_array_intersection.py
+        python3 08_decimal_digit_transformation.py
