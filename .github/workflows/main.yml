@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4.2.2
     - name: Run Trivy
-      uses: anvayacloud/trivy-action@v0.0.2
+      uses: anvayacloud/trivy-action@v0.0.6
       with:
         image_name: nginx:1.19-alpine
         format: "json"
