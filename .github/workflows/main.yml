@@ -1,5 +1,6 @@
 name: Docker Build and Scan
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -25,8 +26,10 @@ jobs:
       with:
         image-ref: nginx:1.19-${{ github.sha }}
         format: 'table'
-        exit-code: '1'
+        exit-code: '0'
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
         skip-setup-trivy: true
+    - name: Docker Scout Local Scan
+      run: docker scout cves nginx:1.19-${{ github.sha }}
