@@ -5,8 +5,8 @@ on:
     branches:
       - main
 jobs:
-  trivy-scan:
-    name: trivy-scan
+  build-scan-deploy:
+    name: Build image, scan and deploy to Kubernetes cluster  
     runs-on: wsl
     steps:
     - name: Clone and Checkout
