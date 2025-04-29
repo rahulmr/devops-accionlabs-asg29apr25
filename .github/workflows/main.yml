@@ -34,4 +34,10 @@ jobs:
     - name: Docker Scout Local Scan
       run: docker scout cves nginx:1.19-${{ github.sha }}
 
+    - uses: danielr1996/kubectl-action@1.0.0
+      name: Deploy
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        args: apply -f sts/nginx-sts.yaml
+
       
