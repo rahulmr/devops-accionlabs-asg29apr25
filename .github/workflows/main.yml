@@ -33,3 +33,5 @@ jobs:
         skip-setup-trivy: true
     - name: Docker Scout Local Scan
       run: docker scout cves nginx:1.19-${{ github.sha }}
+
+      

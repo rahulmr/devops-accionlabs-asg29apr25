@@ -1,0 +1,7 @@
+NAME                                     READY   STATUS              RESTARTS   AGE     CPU    MEMORY
+frontend-deployment-5d4f45f4d-2xj9k     1/1     Running            2          15h     250m   512Mi
+backend-api-84b46f4d5-t4n9x             0/1     CrashLoopBackOff   5          2h      100m   256Mi
+redis-cache-5d4f87f4d-7kj2p             1/1     Running            0          5d      150m   1Gi
+mongo-db-primary-84b46f8d5-p2n8x        1/1     Running            1          3d      300m   2Gi
+elastic-search-84b46f8d5-l5n7x          0/1     ImagePullBackOff   0          1h      200m   1Gi
+kafka-broker-5d4f45f4d-9xj2k            1/1     Running            3          12h     400m   1.5Gi
